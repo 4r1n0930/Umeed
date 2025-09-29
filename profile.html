@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umeed - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding-top: 60px;
+            padding-bottom: 70px;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #0A1D37;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .sports-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #FFD166;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .sports-icon i {
+            color: #0A1D37;
+            font-size: 18px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .language-switch {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .language-switch i {
+            color: white;
+            margin-right: 6px;
+            font-size: 16px;
+        }
+
+        .language-switch span {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Profile Section */
+       
+	.profile-section {
+	    max-width:1500px;
+            background: linear-gradient(135deg, #0A1D37, #1a3a63);
+            border-radius: 16px;
+            padding: 50px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 209, 102, 0.1), transparent);
+            transform: rotate(45deg);
+        }
+
+        .profile-icon {
+            position:fixed;
+            top:100px; 
+	    left:40px;
+            width: 60px;
+            height: 60px;
+            background-color: #FFD166;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+	    margin-top: 20px;
+            color: #0A1D37;
+            font-size: 22px;
+            z-index: 2;
+        }
+
+        .profile-info h2 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 5px;
+            margin-left:90px; 
+            z-index: 2;
+            position: relative;
+        }
+
+        .profile-details {
+            margin-left:90px; 
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .profile-details span {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        /* Card Grid Styles */
+        .section-title {
+            font-size: 18px;
+            margin: 20px 0 12px;
+            color: #0A1D37;
+            font-weight: 700;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        /* Static Cards (No hover effects) */
+        .static-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .static-card-image {
+            height: 70px;
+            background-color: #e9edf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A1D37;
+            font-size: 24px;
+        }
+
+        .static-card-content {
+            padding: 12px 8px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .static-card h3 {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #0A1D37;
+            text-align: center;
+        }
+
+        .static-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Dynamic Cards (With hover effects) */
+        .dynamic-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .dynamic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .dynamic-card-image {
+            height: 70px;
+            background-color: #e9edf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A1D37;
+            font-size: 24px;
+        }
+
+        .dynamic-card-content {
+            padding: 12px 8px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dynamic-card h3 {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #0A1D37;
+            text-align: center;
+        }
+
+        .dynamic-card p {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Remove underline from all links */
+        a {
+            text-decoration: none;
+        }
+
+        /* Footer Navigation Styles */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #0A1D37;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            flex: 1;
+            height: 100%;
+        }
+
+        .nav-item.active {
+            color: #FFD166;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <div class="sports-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="logo">Umeed</div>
+        </div>
+        <div class="language-switch">
+            <i class="fas fa-globe"></i>
+            <span>EN</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h2>Dhruv Goel</h2>
+                <div class="profile-details">
+                    <span>Age: 19</span>
+                    <span>Gender: M</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards Section -->
+        <h2 class="section-title">My Stats</h2>
+        <div class="card-container">
+            <!-- Height Card (Static) -->
+            <div class="static-card">
+                <div class="static-card-image">
+                    <i class="fas fa-ruler-vertical"></i>
+                </div>
+                <div class="static-card-content">
+                    <h3>Height</h3>
+                    <p>182 cm</p>
+                </div>
+            </div>
+            
+            <!-- Weight Card (Static) -->
+            <div class="static-card">
+                <div class="static-card-image">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <div class="static-card-content">
+                    <h3>Weight</h3>
+                    <p>67 kg</p>
+                </div>
+            </div>
+            
+            <!-- BMI Card (Static) -->
+            <div class="static-card">
+                <div class="static-card-image">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="static-card-content">
+                    <h3>BMI Index</h3>
+                    <p id="bmi-value">20.2</p>
+                </div>
+            </div>
+            
+            <!-- Achievements Card (Dynamic) -->
+            <a href="#" class="dynamic-card">
+                <div class="dynamic-card-image">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="dynamic-card-content">
+                    <h3>Achievements</h3>
+                    <p>View your sports achievements</p>
+                </div>
+            </a>
+            
+            <!-- Events Card (Dynamic) -->
+            <a href="#" class="dynamic-card">
+                <div class="dynamic-card-image">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="dynamic-card-content">
+                    <h3>Events</h3>
+                    <p>Check upcoming events</p>
+                </div>
+            </a>
+            
+            <!-- Basketball Leaderboard Card (Dynamic) -->
+            <a href="#" class="dynamic-card">
+                <div class="dynamic-card-image">
+                    <i class="fas fa-basketball-ball"></i>
+                </div>
+                <div class="dynamic-card-content">
+                    <h3>Leaderboard</h3>
+                    <p>See where you stand</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer>
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home nav-icon"></i>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="sports.html" class="nav-item">
+            <i class="fas fa-baseball-ball nav-icon"></i>
+            <span class="nav-label">Sports</span>
+        </a>
+        <a href="SAI.html" class="nav-item">
+            <i class="fas fa-landmark nav-icon"></i>
+            <span class="nav-label">SAI</span>
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <i class="fas fa-user nav-icon"></i>
+            <span class="nav-label">Profile</span>
+        </a>
+    </footer>
+
+    <script>
+        // Simple script to handle navigation item clicks
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Language switch functionality
+        document.querySelector('.language-switch').addEventListener('click', function() {
+            const currentLang = this.querySelector('span').textContent;
+            this.querySelector('span').textContent = currentLang === 'EN' ? 'HI' : 'EN';
+        });
+    </script>
+</body>
+</html>
