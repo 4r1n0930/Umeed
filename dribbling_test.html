@@ -219,7 +219,7 @@ function stopCamera() {
 
 function showFinalScore() {
   // Frequency score (max 40)
-  let freqScore = Math.min(40, (dribbleCount/43)*40);
+  let freqScore = Math.min(40, (dribbleCount/46)*40);
 
   // Distance score (max 30) – if no hip visible, score = 0
   let distScore = 0;
@@ -231,8 +231,8 @@ function showFinalScore() {
   // Form score (max 30) - based on dribble quality instead of frames
   let formScore = 0;
   if (dribbleCount > 0) {
-    formScore = (Math.min(dribbleCount,(goodFormDribbles + 26))/ dribbleCount) * 30;
-    formScore = formScore-2;
+    formScore = (Math.min(30,(goodFormDribbles + 25/ dribbleCount) * 30);
+    
   }
 
   let finalScore = Math.round(freqScore + distScore + formScore);
