@@ -231,8 +231,8 @@ function showFinalScore() {
   // Form score (max 30) - based on dribble quality instead of frames
   let formScore = 0;
   if (dribbleCount > 0) {
-    formScore = (Math.min(30,(goodFormDribbles + 25/ dribbleCount) * 30);
-	formScore = formScore + 4;
+    formScore = Math.min(30,(goodFormDribbles + 25/ dribbleCount) * 30);
+	formScore = formScore + 8;
     
   }
 
@@ -453,4 +453,5 @@ setTimeout(() => {
 init();
   </script>
 </body>
+
 </html>
